@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字自动增长</title>
+</head>
+<body>
+    <div id="app">
+        <input type="number" v-model="number"/>
+        <!-- <button onclick="handleIncrement()">点击加1</button> -->
+        <!-- 函数语句简单的时候可以这样写 -->
+        <!-- <button v-on:click="number++">点击加1</button> -->
+        <button v-on:click="handleIncrement">点击加1</button>
+    </div>
+
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        //JQuery提高了 DOM 操作的效率
+        //Vue极大地解放了 DOM 操作
+        // Vue 全部吧 DOM 操作都给你屏蔽了，核心思想就是 数据驱动视图
+        const app = new Vue({
+            el: '#app',
+            data: {
+                number: 1,
+            },
+            methods: {
+                handleIncrement: function () {
+                    //在通过 v-on 注册的方法中我们可以直接通过 this 来访问 data 中的数据成员
+                    this.number++;
+                }
+            }
+        })
+
+        // function handleIncrement(){
+        //     app.number++;
+        // }
+    </script>
+</body>
+</html>

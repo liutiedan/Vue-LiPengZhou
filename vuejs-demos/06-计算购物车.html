@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算购物车</title>
+</head>
+<body>
+    <div id="app">
+        <label>单价:</label><input type="number"v-model="price"/>
+        <br/>
+        <label>数量:</label>
+        <button v-on:click="handleDecrease">-</button>
+            <input type="number" v-model="num"/>
+        <button v-on:click="handleIncrease">+</button>
+        <br/>
+        <label>总价格:</label><strong>{{ price * num }}</strong>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                price: 200,
+                num: 1
+            },
+            methods: {
+                handleDecrease: function(){
+                    this.num--;
+                },
+                handleIncrease: function(){
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

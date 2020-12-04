@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>综合案例</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>ToDo-List</h1>
+        <!-- <p><span>{{ todos.filter(function(item){return item.done == false}).length }}</span> of {{ todos.length }} remaining [archive]</p> -->
+        <p><span>{{ todos.filter(item => !item.done).length }}</span> of {{ todos.length }} remaining [archive]</p>
+        <p v-for="(item,index) in todos">
+            <input type="checkbox" v-model="item.done"/>
+            <!--
+                v-bind 可以用来动态绑定属性值
+                class 给了一个对象
+                对象的 key 是类名，value 是布尔值
+
+                当布尔值为 true 时，作用这个 key 样式
+            -->
+            <span v-bind:class="{done: item.done}">{{ item.title }}</span>
+            <button @click="remove(index)">×</button>
+        </p>
+        <!-- <p>
+            <input type="checkbox"/><span>睡觉</span>
+        </p>
+        <p>
+            <input type="checkbox"/><span>打豆豆</span>
+        </p> -->
+        <input type="text" v-model="todo"  @keydown.enter="add"/>
+        <button v-on:click="add">Add</button>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const todos = [
+            {
+                id: 1,
+                title: "吃饭",
+                done: false
+            },
+            {
+                id: 2,
+                title: "睡觉",
+                done: false
+            },
+            {
+                id: 3,
+                title: "打豆豆",
+                done: true
+            }
+        ]
+        const app = new Vue({
+            el: '#app',
+            data: {
+                todos,
+                cnt: 0,
+                // total: 3,
+                todo: ''
+            },
+            methods: {
+                add(){
+                    this.total++;
+                    // console.log(this.todos[2].id)
+                    this.todos.push({
+                        id: this.todos[this.todos.length - 1].id + 1,
+                        title: this.todo,
+                        done: false
+                    })
+                    this.todo = '';
+                },
+                remove(index){
+                    this.todos.splice(index, 1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ 'hello' + 'world' }}</h1>
+        <h1>{{ message }}</h1>
+    </div>
+    <!--
+        0.npm install vue
+        1.引包
+        2.new Vue得到一个实例(就可以把DOM当做模板操作了)
+          Vue暂且可以理解为一个高级的模板引擎
+    -->
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        //得到 Vue 实例
+        const app = new Vue({
+            el: '#app', //告诉vue管理模板的入口节点，这样的话就可以在被 vue 管理的模板中使用 Vue 提供的特殊模板引擎语法
+            data: {//data 中的数据叫响应式数据，数据驱动视图，即当数据发生改变，那么所有绑定该数据的DOM都会跟着改变(MVVM)
+                message: 'hello Vue.js'
+            }
+        })
+    </script>
+</body>
+</html>

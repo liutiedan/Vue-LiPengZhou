@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名展示-DOM操作</title>
+</head>
+<body>
+    姓：<input value="刘" id="firstname"/>
+    <br/>
+    名：<input value="志磊" id="lastname"/>
+    <br/>
+    <span id="fullname">刘志磊</span>
+
+    <script>
+        //dom操作版本
+        let firstname = document.getElementById("firstname");
+        let lastname = document.getElementById("lastname");
+        let fullname = document.getElementById("fullname");
+        //向下复制当前行 shift+Alt+下
+        firstname.addEventListener('input', handleTextInput);
+        lastname.addEventListener('input', handleTextInput);
+
+        function handleTextInput(){
+            fullname.innerHTML = firstname.value + lastname.value;
+        }
+    </script>
+</body>
+</html>

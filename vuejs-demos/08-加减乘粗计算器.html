@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加减乘除计算器</title>
+</head>
+<body>
+    <div id="app">
+        <input type="number" v-model="num1"/>
+        <select v-model="options">
+            <option value="0">+</option>
+            <option value="1">-</option>
+            <option value="2">*</option>
+            <option value="3">/</option>
+        </select>
+        <input type="number" v-model="num2"/>
+        <button v-on:click="calculate">=</button>
+        <strong>{{ result }}</strong>
+    </div>
+    
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                num1: 20,
+                num2: 10,
+                options: 0,
+                result: 0
+            },
+            methods: {
+                calculate(){
+                    // console.log(this.options);
+                    let opt = this.options;
+                    console.log(opt);
+                    let n1 = parseInt(this.num1), n2 = parseInt(this.num2);
+                    if(opt == 0){
+                        console.log(typeof(n1));
+                        this.result = n1 + n2;
+                    }else if(opt == 1){
+                        console.log("做减法");
+                        this.result = n1 - n2;
+                    }else if(opt == 2){
+                        this.result = n1 * n2;
+                    }else if(opt == 3){
+                        if(n2 == 0){
+                            alert("除数不能为0");
+                            return;
+                        }
+                        this.result = n1 / n2;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

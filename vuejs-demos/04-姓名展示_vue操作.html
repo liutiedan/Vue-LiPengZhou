@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名展示-Vue操作</title>
+</head>
+<body>
+    <div id="app">
+        姓：<input value="刘" v-model="firstname"/>
+        <br/>
+        名：<input value="志磊" v-model="lastname"/>
+        <br/>
+        <span >{{ firstname + lastname }}</span>
+    </div>
+
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        //JQuery提高了 DOM 操作的效率
+        //Vue极大地解放了 DOM 操作
+        // Vue 全部吧 DOM 操作都给你屏蔽了，核心思想就是 数据驱动视图
+        new Vue({
+            el: '#app',
+            data: {
+                firstname: '',
+                lastname: ''
+            }
+        })
+    </script>
+</body>
+</html>

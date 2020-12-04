@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-html="rawHtml"></div>
+        <!-- 属性绑定 -->
+        <div>
+            <ul>
+                <li v-for="item in todos">
+                    <a v-bind:href="'todos?id=' + item.id">{{ item.title }}</a>
+                    <a v-bind:href="true? 123 : 456">{{ true? 123 : 456 }}</a>
+                </li>
+            </ul>
+        </div>
+
+        <a v-on:click.prevent="handleGoBaiduClick" href="http://www.baidu.com">去百度</a>
+    </div>
+
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                rawHtml: '<h1>hello world</h1>',
+                todos: [
+                    {
+                        id: 1,
+                        title: 'aaa'
+                    },
+                    {
+                        id: 2,
+                        title: 'bbb'
+                    },
+                    {
+                        id: 3,
+                        title: 'ccc'
+                    }
+                ]
+            },
+            methods: {
+                handleGoBaiduClick(){
+                    window.alert("baidu");
+                }
+            }
+        })
+    </script>
+</body>
+</html>
