@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>数组过滤</title>
+</head>
+<body>
+    <div id="app">
+        
+        <input type="text" v-model="inputName"><button @click="filterByName = inputName">搜索</button>
+        <br>
+        性别:<input type="radio" value='' checked v-model="filterByGender">全部
+             <input type="radio" value='男' v-model="filterByGender">男
+             <input type="radio" value='女' v-model="filterByGender">女
+        <br>
+        <table>
+            <thead>
+                <th>id</th>
+                <th>姓名</th>
+                <th>性别</th>
+            </thead>
+            <tbody>
+                <tr v-for="item in filterUser">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.gender }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const users = [
+            {
+                id: 1,
+                name: 'aaa',
+                gender: '男'
+            },
+            {
+                id: 2,
+                name: 'bbb',
+                gender: '女'
+            },
+            {
+                id: 3,
+                name: 'ccc',
+                gender: '女'
+            },
+            
+        ];
+        const app = new Vue({
+            el: '#app',
+            data: {
+                users,
+                inputName: '',
+                filterByName: '',
+                filterByGender: ''
+            },
+            computed: {
+                filterUser: function(){
+                    return this.users.filter(item => item.name.includes(this.filterByName) 
+                    && item.gender.includes(this.filterByGender));
+                }
+            }
+        })
+    </script>
+</body>
+</html>

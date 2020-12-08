@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -19,6 +26,11 @@
         </div>
 
         <a v-on:click.prevent="handleGoBaiduClick" href="http://www.baidu.com">去百度</a>
+
+        <div>
+            <input type="checkbox" v-model="seen"/>
+            <div v-if="seen" class="box"></div>
+        </div>
     </div>
 
 
@@ -28,6 +40,7 @@
             el: '#app',
             data: {
                 rawHtml: '<h1>hello world</h1>',
+                seen: true,
                 todos: [
                     {
                         id: 1,

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>组件库</title>
+    <link rel="stylesheet" href="node_modules/element-ui/lib/theme-chalk/index.css">
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="app">
+        <span class="demonstration">默认不区分颜色</span>
+        <el-rate v-model="value1" show-text></el-rate>
+        <br>
+        <br>
+        <br>
+        <my-component></my-component>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/element-ui/lib/index.js"></script>
+
+    <script>
+            // 1. 先定义（注册）组件
+            // 2. 使用
+            // 3. 组件的模板 template
+            //    注意：只能有一个根元素，否则警告报错
+            //    3.1 template 可以是字面量字符串，缺点是没有高亮，内置在 JavaScript 中，写起来麻烦
+            //    3.2 template 可以写在 script 标签中，虽然解决了高亮的问题，但是也麻烦
+            //    3.3 以上方式都不好，我们最终的解决方案是使用 Vue 的 .vue 单文件组件来写。
+            //        但是要想使用这种方式必须结合一些构建工具
+                   
+            // 4. 组件是独立的作用域，就像我们 Node 中的 JavaScript 模块一样，独立的
+            // 5. 组件其实就是一个特殊的 Vue 实例，可以有自己的 data、methods、computed、watch 等等选项
+            // 6. 组件的 data 必须是函数
+            //    函数中返回一个对象作为组件的 data
+        Vue.component('my-component', {
+            template: `
+                <div>
+                <div>My Component</div>
+                <h2>{{ message }}</h2>
+                <input type="text" v-model="message" />
+                <button @click="handleClick">点击弹出自己的 message</button>
+                <input type="checkbox" v-model="checked" />
+                <div class="box" v-if="checked"></div>
+                </div>
+            `,
+            data () {
+                return {
+                message: 'Component Data',
+                checked: true
+                }
+            },
+            methods: {
+                handleClick () {
+                window.alert(this.message)
+                }
+            }
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                value1: null
+            },
+            
+        })
+    </script>
+</body>
+</html>
